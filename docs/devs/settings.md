@@ -83,8 +83,8 @@ settings = SettingsModel(
     exclude: List[str | Pattern] = []
     preferred: List[str | Pattern] = []
     resolutions: Dict[str, bool] = {
-        "2160p": False,
         "4k": False,
+        "2160p": False,
         "1440p": True,
         "1080p": True,
         "720p": True,

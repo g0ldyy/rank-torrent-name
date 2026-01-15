@@ -352,8 +352,8 @@ class ResolutionConfig(ConfigModelBase):
         field_name = f"r{key}" if key.endswith('p') or key == '4k' else key
         return getattr(self, field_name)
 
-    r2160p: bool = Field(default=False)
     r4k: bool = Field(default=False)
+    r2160p: bool = Field(default=False)
     r1440p: bool = Field(default=True)
     r1080p: bool = Field(default=True)
     r720p: bool = Field(default=True)
