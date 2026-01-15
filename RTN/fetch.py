@@ -14,7 +14,6 @@ Parameters:
 
 For more information on each function, refer to the respective docstrings.
 """
-import regex
 from .models import ParsedData, SettingsModel
 
 ANIME = {"ja", "zh", "ko"}
@@ -261,18 +260,16 @@ def fetch_resolution(data: ParsedData, settings: SettingsModel, failed_keys: set
             return True
         return False
 
-    res_map = {
-        "2160p": "2160p", "4k": "2160p",
-        "1080p": "1080p", "1440p": "1080p",
-        "720p": "720p",
-        "480p": "480p", "576p": "480p",
-        "360p": "360p", "240p": "360p"
-    }
-
-    res_key = res_map.get(data.resolution.lower(), "unknown")
-    if not settings.resolutions[res_key]:
-        failed_keys.add(f"resolution")
-        return True
+    res_key = data.resolution.lower()
+    try:
+        if not settings.resolutions[res_key]:
+            failed_keys.add("resolution")
+            return True
+    except AttributeError:
+        # unknown resolution, check if unknown is allowed
+        if not settings.resolutions["unknown"]:
+            failed_keys.add("resolution_unknown")
+            return True
     return False
 
 
