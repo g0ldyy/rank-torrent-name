@@ -349,10 +349,9 @@ class ResolutionConfig(ConfigModelBase):
     """Configuration for which resolutions are enabled."""
     def __getitem__(self, key: str) -> Any:
         # Special handling for resolution fields - add 'r' prefix
-        field_name = f"r{key}" if key.endswith('p') or key == '4k' else key
+        field_name = f"r{key}" if key.endswith('p') else key
         return getattr(self, field_name)
 
-    r4k: bool = Field(default=False)
     r2160p: bool = Field(default=False)
     r1440p: bool = Field(default=True)
     r1080p: bool = Field(default=True)

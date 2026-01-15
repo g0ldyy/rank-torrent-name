@@ -33,7 +33,6 @@ class Resolution(Enum):
 
 
 RESOLUTION_MAP: dict[str, Resolution] = {
-    "4k": Resolution.UHD_2160P,
     "2160p": Resolution.UHD_2160P,
     "1440p": Resolution.UHD_1440P,
     "1080p": Resolution.FHD_1080P,
